@@ -216,3 +216,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- markov-games ---------------------------------------------------------
+.venv/
+uv.lock.bak
+
+# Experiment outputs and recordings. The one committed GIF is the README's.
+runs/
+outputs/
+*.pt
+*.ckpt
+docs/media/*
+!docs/media/capture-the-flag.gif
+
+# macOS
+.DS_Store
