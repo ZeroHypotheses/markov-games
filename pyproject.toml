@@ -1,0 +1,54 @@
+[project]
+name = "markov-games"
+version = "0.1.0"
+description = "Small Markov games for studying multi-agent RL: self-play, coordination, competition"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file = "LICENSE" }
+authors = [{ name = "René Blaim" }]
+keywords = ["multi-agent", "reinforcement-learning", "markov-games", "pettingzoo", "self-play"]
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Deliberately short. Everything here is needed to run the environment; the
+# learning baselines add nothing to this list except what torch already gives.
+dependencies = [
+    "numpy>=1.26",
+    "torch>=2.2",
+    "gymnasium>=1.0",
+    "pettingzoo>=1.24",
+    "pygame>=2.5",
+]
+
+[project.scripts]
+mg-rollout = "markov_games.rollout:main"
+
+[project.urls]
+Repository = "https://github.com/ZeroHypotheses/markov-games"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+    "imageio>=2.34",   # GIF export for the README, via `mg-rollout --gif`
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/markov_games"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
